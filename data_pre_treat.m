@@ -1,0 +1,17 @@
+clear all;
+
+exp=load('data');
+exp_b=load('data_b');
+exp(:,3)=exp(:,3)-exp_b(:,3);
+exp(:,4)=exp(:,4)-exp_b(:,4);
+exp(:,5)=-exp(:,3)./exp(:,4);
+
+
+filew=fopen('data','wt');
+[m n]=size(exp);
+for jj=1:m
+    fprintf(filew,'%10.3f %10.3f %10.3f %10.3f %10.3f \n',exp(jj,1),exp(jj,2),exp(jj,3),exp(jj,4),exp(jj,5));
+    jj=jj+1;
+end
+
+fclose(filew);
